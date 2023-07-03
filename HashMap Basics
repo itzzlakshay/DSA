@@ -1,0 +1,88 @@
+package hashmap;
+
+import java.util.*;
+
+public class basics {
+
+    public static void HashMapMethods(){
+        // syntax
+        Map<String,Integer> mp = new HashMap<>();
+
+        // adding elements
+        mp.put("akash", 21);
+        mp.put("yash", 16);
+        mp.put("luv", 17);
+        mp.put("rishika", 19);
+        mp.put("harry", 18);
+
+        // getting value of key from hashmap
+        System.out.println(mp.get("yash"));  //16
+        System.out.println(mp.get("rahul"));  // null
+
+        // updating value of key in hashmap
+        mp.put("akash" , 25);
+        System.out.println(mp.get("akash"));
+
+        // removing a pair from hashmap
+        System.out.println(mp.remove("akash"));  // 25
+        System.out.println(mp.remove("riya"));  // null
+
+        // checking if a key is in hashmap or not
+        System.out.println(mp.containsKey("akash"));
+        System.out.println(mp.containsKey("harry"));
+
+       // adding a new key if the new key doesn't exist already
+        mp.putIfAbsent("yashika" , 21);  // will enter
+        mp.putIfAbsent("yash" , 21);  // will not enter because key is existing
+
+        // get all keys in a hashmap
+        System.out.println(mp.keySet());
+
+        // get all values in a hashmap
+        System.out.println(mp.values());
+
+        // get all entries in a hashmap
+        System.out.println(mp.entrySet());
+
+        // traversing all entities of hashmap
+        for(String key : mp.keySet()) {
+            System.out.printf("age of %s is %d \n ", key, mp.get(key));
+        }
+        System.out.println();
+        for(Map.Entry<String, Integer> e : mp.entrySet()){
+            System.out.printf("age of %s is %d \n", e.getKey(), e.getValue());
+        }
+        System.out.println();
+        for(var e : mp.entrySet()){
+            System.out.printf("age of %s is %d \n", e.getKey(), e.getValue());
+        }
+
+    }
+
+
+    public static void main(String[] args) {
+//    HashMapMethods();
+
+    int arr[] = {1,2,3,4,4,5,6,1,3,6,7,8,8,4};
+    Map<Integer,Integer> freq = new HashMap<>();
+    for(int el : arr){
+        if( !freq.containsKey(el)){
+            freq.put(el,1);
+        }
+        else{
+            freq.put(el, freq.get(el)+1);
+        }
+    }
+    System.out.println(freq.entrySet());
+
+    int mxfreq = 0, ansKey = 0;
+    for(var e : freq.entrySet()){
+        if(e.getValue() > mxfreq){
+            mxfreq = e.getValue();
+            ansKey = e.getKey();
+        }
+    }
+        System.out.printf("%d exist %d times " , ansKey, mxfreq);
+
+    }
+}
